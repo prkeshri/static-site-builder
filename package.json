@@ -1,0 +1,28 @@
+{
+    "name": "static-site-builder",
+    "version": "1.0.0",
+    "description": "Simple build script to inject partials and replace tokens",
+    "type": "module",
+    "scripts": {
+        "build": "node build.js",
+        "dev:build": "cross-env NODE_ENV=dev npm run build",
+        "dev:auto-build": "cross-env NODE_ENV=dev node dev-autobuild.js",
+        "dev:livereload": "cross-env NODE_ENV=dev livereload dist -p 35729",
+        "dev:worker": "cross-env NODE_ENV=dev wrangler dev --local --port=8787",
+        "dev": "npm run dev:build && npm-run-all -p dev:auto-build dev:livereload dev:worker",
+        "dev:no-autobuild": "npm run dev:build && npm-run-all -p dev:livereload dev:worker"
+    },
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "chokidar": "^4.0.3",
+        "cross-env": "^10.0.0",
+        "ejs": "^3.1.10",
+        "livereload": "^0.10.3",
+        "npm-run-all": "^4.1.5"
+    },
+    "dependencies": {
+        "dotenv": "^17.2.2",
+        "toml": "^3.0.0"
+    }
+}
