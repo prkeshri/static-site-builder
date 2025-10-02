@@ -55,8 +55,18 @@ async function* walk(dir) {
     }
 }
 
+const shouldProcessExtns = [
+    ".html",
+    ".htm",
+    "_redirects",
+    ".js",
+    ".js.download",
+    ".webmanifest",
+    ".txt",
+    ".xml",
+];
 function shouldProcess(fileName) {
-    if (fileName.endsWith('.html') || fileName.endsWith('.htm') || fileName === '_redirects' || fileName.endsWith('.js') || fileName.endsWith('.js.download') || fileName.endsWith('.webmanifest')) {
+    if (shouldProcessExtns.some(ext => fileName.endsWith(ext))) {
         return true;
     }
     return false;
